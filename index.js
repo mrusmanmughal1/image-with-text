@@ -62,7 +62,7 @@ Jimp.loadFont(fontFamily) // You can use a different Jimp font if needed
 
 
 // Define an endpoint
-app.get('/img-url', (req, res) => {
+app.use('/', (req, res) => {
   res.send('This is my custom endpoint!');
 });
 
