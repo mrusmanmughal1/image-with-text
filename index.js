@@ -9,7 +9,7 @@ const fontFamily = "../128.fnt";
 // Define an endpoint
 app.get('/img', (req, res) => {
   const phoneModel = req.query.param1; 
-  const Text = req.query.param2; 
+  const Text = req.query.Text; 
 Jimp.loadFont(fontFamily)  
   .then((font) => {
     return Jimp.read(inputImagePath).then((image) => {
