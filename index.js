@@ -59,7 +59,7 @@ Jimp.loadFont(fontFamily) // You can use a different Jimp font if needed
 // Define an endpoint
 app.get('/img', (req, res) => {
   // Construct the URL of the generated image
-  const imageUrl = `http://localhost:${port}/${outputImagePath}`;
+  const imageUrl = `http://image-with-text.vercel.app/${outputImagePath}`;
   
   // Send the image URL as a response
   res.json({ imageUrl });
