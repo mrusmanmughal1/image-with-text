@@ -16,7 +16,7 @@ Jimp.loadFont(fontFamily)
     return Jimp.read(inputImagePath).then((image) => {
       // Create a new Jimp image for the text
       const textImage = new Jimp(300, 600); // Adjust the width and height as needed
-      textImage.print(font, 0, 0, "Text"); // Add text to the textImage
+      textImage.print(font, 0, 0, Text); // Add text to the textImage
       textImage.rotate(90);  
       textImage.color([{ apply: "xor", params: ["#D3D0AD"] }]);
       const shadowOffset = -7; // Adjust the shadow offset as needed
