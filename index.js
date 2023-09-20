@@ -8,14 +8,15 @@ const fontFamily = "../128.fnt";
 
 // Define an endpoint
 app.get('/img', (req, res) => {
-  const phoneModel = req.query.param1; 
+  const phoneModel = req.query.phoneModel; 
   const Text = req.query.Text; 
+  console.log("Text: "+Text);
 Jimp.loadFont(fontFamily)  
   .then((font) => {
     return Jimp.read(inputImagePath).then((image) => {
       // Create a new Jimp image for the text
-      const textImage = new Jimp(500, 500); // Adjust the width and height as needed
-      textImage.print(font, 0, 0, Text); // Add text to the textImage
+      const textImage = new Jimp(300, 600); // Adjust the width and height as needed
+      textImage.print(font, 0, 0, "Text"); // Add text to the textImage
       textImage.rotate(90);  
       textImage.color([{ apply: "xor", params: ["#D3D0AD"] }]);
       const shadowOffset = -7; // Adjust the shadow offset as needed
@@ -32,6 +33,8 @@ Jimp.loadFont(fontFamily)
       const textY = (image.bitmap.height - textImage.bitmap.height) / 2;
       const shadowX = textX + shadowOffset;
       const shadowY = textY + shadowOffset;
+
+     
 
       // Composite the shadowImage onto the original image
       image.composite(shadowImage, shadowX, shadowY);
