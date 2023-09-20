@@ -2,7 +2,6 @@ const express = require("express");
 const app = express();
 const Jimp = require("jimp");
 const port = 4550;
-const inputImagePath = "2.jpeg";
 const outputImagePath = "outputtt.jpg";
 const fontFamily = "../128.fnt";
 
@@ -10,10 +9,10 @@ const fontFamily = "../128.fnt";
 app.get('/img', (req, res) => {
   const phoneModel = req.query.phoneModel; 
   const Text = req.query.Text; 
-  console.log("Text: "+Text);
+  console.log("model: "+phoneModel);
 Jimp.loadFont(fontFamily)  
   .then((font) => {
-    return Jimp.read(inputImagePath).then((image) => {
+    return Jimp.read(phoneModel).then((image) => {
       // Create a new Jimp image for the text
       const textImage = new Jimp(300, 600); // Adjust the width and height as needed
       textImage.print(font, 0, 0, Text); // Add text to the textImage
@@ -57,7 +56,7 @@ Jimp.loadFont(fontFamily)
   .catch((err) => {
     console.error(err);
   });
-  const imagePath = __dirname + '/outputtt.jpg';
+  const imagePath = __dirname + '/outputtt.jpg' ;
   
   res.sendFile(imagePath);
 });
