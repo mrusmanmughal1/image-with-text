@@ -11,6 +11,7 @@ app.get("/img", (req, res) => {
   const phoneModel = req.query.phoneModel;
   const Text = req.query.Text;
   const TextLength = Text.length;
+  const Rotate = req.query.rotate == "true" ? 90 : 0;
   const height =getFont.textheight(TextLength);
   const width=getFont.textWidth(TextLength);
   let fontFamily =getFont.Font(TextLength);
@@ -19,17 +20,17 @@ app.get("/img", (req, res) => {
       return Jimp.read(phoneModel).then((image) => {
         const textImage = new Jimp(width, height);
         textImage.print(font, 0, 0, Text );
-        textImage.rotate(90);
-        console.log(width,height)
+        textImage.rotate(Rotate );
         const shadowImage = textImage
           .clone()
           .color([
-            { apply: 'xor', params: [ '#4295f5' ] }
+            { apply: 'mix', params: [ "#ffffff " ,100 ] }
           ]);
         textImage.color([
-          { apply: 'xor', params: [ '#42f5cb' ] }
+         
+          { apply: 'mix', params: ["#a3ffb4" , 100] }
         ]);
-        const shadowOffset = -7;
+        const shadowOffset = -3 ;
         // Calculate the position to center the rotated textImage
         const textX = (image.bitmap.width - textImage.bitmap.width) / 2;
         const textY = (image.bitmap.height - textImage.bitmap.height) / 2;
